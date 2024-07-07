@@ -8,7 +8,7 @@
 /* Body styling */
 body {
     overflow: hidden;
-    background-color: blueviolet;
+    background-image: url('img/mahi.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
