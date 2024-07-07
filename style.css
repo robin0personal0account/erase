@@ -1,0 +1,60 @@
+/* Reset default margin, padding, and box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    overflow: hidden;
+    background-image: url('img/mahi.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Container styling */
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Box styling */
+.container .box {
+    width: 3.33vw;
+    height: 3.33vw;
+    background: #0f0;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+
+/* Active box styling */
+.container .box.active {
+    background: #ff0;
+    pointer-events: none;
+    animation: animate 1s linear forwards;
+}
+
+/* Keyframes for animation */
+@keyframes animate {
+    0% {
+        opacity: 1;
+        transform: translate(0px, 0px) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0px, 0px) rotate(720deg);
+    }
+}
+
+/* Media query for small screens */
+@media (max-width: 600px) {
+    .container .box {
+        width: 5vw;
+        height: 5vw;
+    }
+}
