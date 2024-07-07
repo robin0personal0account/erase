@@ -10,26 +10,37 @@
     <div class="container"></div>
 
     <script>
+    // Get container element
     let container = document.querySelector('.container');
-    let count = 1000;
+    
+    // Calculate the number of boxes needed to fill the screen
+    let boxSize = window.innerWidth < 480 ? window.innerWidth * 0.1 : window.innerWidth < 768 ? window.innerWidth * 0.05 : window.innerWidth * 0.0333;
+    let count = Math.ceil(window.innerWidth / boxSize) * Math.ceil(window.innerHeight / boxSize);
+    
+    // Create boxes and append them to the container
     for(let i = 0; i < count; i++){
         let box = document.createElement('div');
         box.className = "box";
         container.appendChild(box);
     }
 
+    // Get all boxes
     let boxes = document.querySelectorAll('.box');
-    for(let i = 0; i < boxes.length; i++){
-        boxes[i].addEventListener('mouseover', (e) => {
-            boxes[i].classList.add('active');
-            boxes[i].style.setProperty('--x', getRandomValue());
-            boxes[i].style.setProperty('--y', getRandomValue());
-        });
 
-        function getRandomValue(){
-            return `${Math.random() * 2000 - 1000}px`;
+    // Function to add 'active' class to box
+    const activateBox = (e) => {
+        if (e.target.classList.contains('box')) {
+            e.target.classList.add('active');
         }
-    }
+    };
+
+    // Add event listeners for mouse and touch events
+    container.addEventListener('mouseover', activateBox);
+    container.addEventListener('touchmove', (e) => {
+        let touch = e.touches[0];
+        let target = document.elementFromPoint(touch.clientX, touch.clientY);
+        activateBox({ target });
+    });
     </script>
 </body>
 </html>
